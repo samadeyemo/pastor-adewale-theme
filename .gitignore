@@ -1,0 +1,44 @@
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Editors & IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Logs & temporary
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node (if you add build tools later)
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+
+# WordPress specific (in case this folder is ever placed inside a full WP install)
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+*.sql
+
+# Theme specific
+*.zip
+.sass-cache/
+.cache/
