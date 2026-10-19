@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PA_VER', '1.0.0' );
+define( 'PA_VER', '1.4.0' );
 define( 'PA_DIR', get_template_directory() );
 define( 'PA_URI', get_template_directory_uri() );
 
@@ -25,6 +25,7 @@ function pa_setup() {
 	add_theme_support( 'custom-logo', array( 'height' => 80, 'width' => 80, 'flex-width' => true, 'flex-height' => true ) );
 	add_theme_support( 'responsive-embeds' );
 	add_theme_support( 'align-wide' );
+	add_theme_support( 'custom-logo', array( 'height' => 120, 'width' => 120, 'flex-width' => true, 'flex-height' => true ) );
 	add_image_size( 'pa-card', 640, 400, true );
 	register_nav_menus(
 		array(

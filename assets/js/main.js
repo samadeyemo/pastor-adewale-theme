@@ -248,3 +248,101 @@
 		});
 	}
 })();
+
+/* ---------- Dark mode toggle + Accent color picker ---------- */
+(function () {
+	'use strict';
+	var root = document.documentElement;
+	var toggle = document.getElementById('themeToggle');
+	var pickerBtn = document.getElementById('colorPickerBtn');
+	var panel = document.getElementById('colorPickerPanel');
+	var colorInput = document.getElementById('accentColorInput');
+	var resetBtn = document.getElementById('colorReset');
+	var DEFAULT = '#D4A017';
+
+	function qs(s, c) { return (c || document).querySelector(s); }
+	function qsa(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+
+	function currentTheme() {
+		return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+	}
+
+	function setTheme(mode) {
+		root.setAttribute('data-theme', mode);
+		try { localStorage.setItem('pa-theme', mode); } catch (e) {}
+		if (toggle) {
+			toggle.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+		}
+	}
+
+	function setAccent(hex) {
+		if (!hex) return;
+		root.style.setProperty('--goldbg', hex);
+		root.style.setProperty('--green', hex);
+		root.style.setProperty('--gold', hex);
+		root.style.setProperty('--green2', hex);
+		try { localStorage.setItem('pa-accent', hex); } catch (e) {}
+		if (colorInput) colorInput.value = hex;
+		qsa('.cp-swatch').forEach(function (s) {
+			s.setAttribute('aria-pressed', (s.getAttribute('data-color') || '').toLowerCase() === hex.toLowerCase() ? 'true' : 'false');
+		});
+	}
+
+	if (toggle) {
+		toggle.addEventListener('click', function () {
+			setTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+		});
+	}
+
+	if (pickerBtn && panel) {
+		pickerBtn.addEventListener('click', function (e) {
+			e.stopPropagation();
+			var isHidden = panel.hasAttribute('hidden');
+			if (isHidden) {
+				panel.removeAttribute('hidden');
+				pickerBtn.setAttribute('aria-expanded', 'true');
+			} else {
+				panel.setAttribute('hidden', '');
+				pickerBtn.setAttribute('aria-expanded', 'false');
+			}
+		});
+		document.addEventListener('click', function (e) {
+			if (!panel.hasAttribute('hidden') && !panel.contains(e.target) && e.target !== pickerBtn && !pickerBtn.contains(e.target)) {
+				panel.setAttribute('hidden', '');
+				pickerBtn.setAttribute('aria-expanded', 'false');
+			}
+		});
+	}
+
+	qsa('.cp-swatch').forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			setAccent(btn.getAttribute('data-color'));
+		});
+	});
+
+	if (colorInput) {
+		colorInput.addEventListener('input', function () {
+			setAccent(colorInput.value);
+		});
+	}
+
+	if (resetBtn) {
+		resetBtn.addEventListener('click', function () {
+			try { localStorage.removeItem('pa-accent'); } catch (e) {}
+			root.style.removeProperty('--goldbg');
+			root.style.removeProperty('--green');
+			root.style.removeProperty('--gold');
+			root.style.removeProperty('--green2');
+			if (colorInput) colorInput.value = DEFAULT;
+			qsa('.cp-swatch').forEach(function (s) {
+				s.setAttribute('aria-pressed', (s.getAttribute('data-color') || '').toLowerCase() === DEFAULT.toLowerCase() ? 'true' : 'false');
+			});
+		});
+	}
+
+	try {
+		var stored = localStorage.getItem('pa-accent');
+		if (stored) setAccent(stored);
+		else if (colorInput) colorInput.value = DEFAULT;
+	} catch (e) {}
+})();

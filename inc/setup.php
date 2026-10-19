@@ -12,7 +12,7 @@ function pa_starter_pages() {
 	$faq  = pa_faq_block( 'Are your resources free?', 'Most teachings and study notes are free to read, watch or download. Some printed books may have a cost to cover production.' );
 	$faq .= pa_faq_block( 'How do I join Bible School?', 'Open the Bible School page, choose a course and follow the steps. If you need help, send us a message.' );
 	$faq .= pa_faq_block( 'How can I give to the ministry?', 'Use the Donate page to give by card or bank transfer.' );
-	$faq .= pa_faq_block( 'Can Pastor Adewale speak at my church or event?', 'Send an invitation through the contact form with the date, place and audience.' );
+	$faq .= pa_faq_block( 'Can Pastor Dr Adewale ABC speak at my church or event?', 'Send an invitation through the contact form with the date, place and audience.' );
 	$faq .= pa_faq_block( 'Can I share your teachings?', 'Yes. Please share the link, and keep the teaching and its source intact.' );
 	$faq .= pa_faq_block( 'How do I request prayer?', 'Use the Request Prayer page. Your request goes to the prayer team only.' );
 
@@ -22,8 +22,37 @@ function pa_starter_pages() {
 		'series'      => array( 'Teaching Series', 'templates/series.php', '' ),
 		'news'        => array( 'News', '', '' ),
 		'outreaches'  => array( 'Outreaches', 'templates/outreaches.php', '<h2 id="heart">The heart behind the mission</h2><p>Our outreaches turn faith into action. We focus on specific needs and places, and give believers the resources to grow: Bible teaching, digital media and discipleship training.</p><p>They rest on one conviction: the Word of God changes lives, and every believer should be able to hear it clearly in their own language.</p><h2 id="action">Our mission in action</h2><h3>Discipleship and leadership training</h3><p>Equipping pastors and church leaders with sound teaching so local churches can grow strong from the inside.</p><h3>Media and digital outreach</h3><p>Taking teaching to where people already are: video, social media and online study.</p><h3>Local-language teaching</h3><p>Making key teachings available in the languages people think and pray in.</p><h3>Bible teaching and education</h3><p>Courses, study groups and printed resources that help believers understand Scripture for themselves.</p><h2 id="regions">Where we serve</h2><p>[List the states, cities and countries where the ministry is active.]</p>' ),
-		'about'       => array( 'Our Vision & Beliefs', 'templates/about.php', '<h2>Who we are</h2><p>[Pastor Adewale Oluranti Ministries] is a Bible teaching ministry. We believe lives change when people meet Jesus, and we help people grow in that encounter through clear teaching and discipling.</p><h2>Our mission</h2><p>To teach the Word of God clearly and equip believers to follow Jesus in faith, wisdom and truth, and to make disciples who do the same.</p><h2>What we do</h2><p>[Describe the ministry\'s real activities: teaching, training leaders, Bible School, translation, media.]</p><h2>History</h2><p>[Add the ministry\'s real milestones: the call, first teaching, Bible School, going online.]</p><h2>What we believe</h2><p><em>Draft. Confirm the wording with Pastor Adewale before publishing.</em></p><ul><li><strong>God.</strong> One true and living God, eternally existing as Father, Son and Holy Spirit.</li><li><strong>Jesus Christ.</strong> The Son of God, who gave His life for our sins, rose from the dead and is coming again.</li><li><strong>The Holy Spirit.</strong> Gives new birth, lives in believers and empowers them for service.</li><li><strong>The Bible.</strong> The inspired Word of God and the final authority in faith and practice.</li><li><strong>The Church.</strong> The united body of Christ, called to fellowship, growth and sharing the gospel.</li><li><strong>Salvation.</strong> Received by personal faith in Jesus Christ.</li></ul>' ),
-		'pastor'      => array( 'Pastor Adewale: Life & Ministry', 'templates/pastor.php', '<blockquote>[A warm, one-line word from Pastor Adewale to a first-time visitor.]</blockquote><p>[Where he grew up and how he came to faith, in his own voice.]</p><p>[How he was called to teach, and the churches and communities he serves.]</p><p>[Why he started this ministry, and who he hopes to help.]</p>' ),
+		'about'       => array( 'Our Vision & Beliefs', 'templates/about.php', '<h2>Who we are</h2>
+<p><strong>Simple God As ABC Ministry</strong> is a Bible teaching ministry founded by Pastor Dr Adewale A.B.C. Oluranti. Our passion is to demystify God and make Him as simple as ABC to the common man.</p>
+<p>We believe lives change when people meet Jesus, and we help people grow through clear, Scripture-based teaching and discipleship.</p>
+
+<h2>Our vision</h2>
+<p>To make God simple and bring His Word to every home in Nigeria and beyond.</p>
+
+<h2>Our mission</h2>
+<p><strong>Teach · Train · Equip · Send</strong></p>
+<ul>
+<li><strong>Teach</strong> — Messages and series built on Scripture</li>
+<li><strong>Train</strong> — Bible School lessons you can take at your pace</li>
+<li><strong>Equip</strong> — Books, notes and guides to take with you</li>
+<li><strong>Send</strong> — Outreach that carries the Word to new places</li>
+</ul>
+
+<h2>What we believe</h2>
+<ul>
+<li>The Holy Bible as the Word of God</li>
+<li>Salvation through Jesus Christ alone</li>
+<li>The person and work of the Holy Spirit</li>
+<li>Faith, prayer and divine preservation</li>
+</ul>
+
+<h2>Our motto</h2>
+<p><em>2026 IS THE BEST — My God is as Simple as ABC — SHALOM</em></p>' ),
+		'pastor'      => array( 'Pastor Dr Adewale A.B.C. Oluranti: Life & Ministry', 'templates/pastor.php', '<blockquote>Faith is not complicated. Prayer is not hard. The Word works.</blockquote>
+<p>Olusoagutan Omowe Adewale A.B.C is the Founder and Lead Pastor of <strong>Simple God As ABC Ministry</strong>. Called in a season of silent battles and unseen tears, God preserved him to become a voice of hope.</p>
+<p>His passion is to demystify God and make Him as simple as ABC to the common man. He is a teacher of the Word, author of several books on faith and prayer, and host of the weekly ABC Bible School.</p>
+<p>His message is simple: Faith is not complicated, Prayer is not hard, The Word works.</p>
+<p><strong>Motto:</strong> 2026 IS THE BEST — My God is as Simple as ABC — SHALOM</p>' ),
 		'donate'      => array( 'Donate', 'templates/donate.php', '<h2>Why your donation matters</h2><p>We rely on donations to teach the Bible and reach people who have not heard it clearly. It is a service of love and part of fulfilling the Great Commission.</p><h3>Other ways to give</h3><p>You can give by bank transfer, in person at a service, or through a partner church. Please contact us and we will guide you.</p><h3>Legacy giving</h3><p>Invest in the Kingdom with a gift in your will. Contact us to talk about it.</p>' ),
 		'contact'     => array( 'Contact Us', 'templates/contact.php', '' ),
 		'prayer'      => array( 'Request Prayer', 'templates/prayer.php', '' ),
@@ -75,7 +104,8 @@ function pa_create_starter() {
 		update_option( 'permalink_structure', '/%postname%/' );
 	}
 	if ( 'Just another WordPress site' === get_option( 'blogdescription' ) ) {
-		update_option( 'blogdescription', 'Bible teachings on faith, prayer and Christian living' );
+		update_option( 'blogdescription', 'My God is as Simple as ABC — Bible teaching for everyday faith' );
+	update_option( 'blogname', 'Simple God As ABC Ministry' );
 	}
 	update_option( 'default_comment_status', 'closed' );
 
@@ -97,6 +127,28 @@ function pa_create_starter() {
 		$legal[] = array( 'title' => 'Privacy', 'id' => $priv, 'hash' => '' );
 	}
 	pa_build_menu( 'Footer: legal', 'footer_legal', $legal );
+
+
+	// Seed ministry settings with client details (only if empty).
+	$existing = get_option( 'pa_settings', array() );
+	if ( ! is_array( $existing ) ) { $existing = array(); }
+	$defaults = array(
+		'pastor_name'     => 'Pastor Dr Adewale A.B.C. Oluranti',
+		'brand_initials'  => 'ABC',
+		'notify_email'    => 'adewaleabc@gmail.com',
+		'phone'           => '08122777279 / 08038017766',
+		'whatsapp'        => 'https://wa.me/2348072507272',
+		'address'         => "12, Oyetaiwo Street, off former de Castle Hotel,\nopposite Ajorosun Club House, Alagbafo Area,\nKube Total Garden, Ibadan, Oyo State, Nigeria",
+		'social_facebook' => 'https://facebook.com/simplegodasabcministry',
+		'quote_text'      => 'Faith is not complicated. Prayer is not hard. The Word works.',
+		'quote_cite'      => 'Pastor Dr Adewale A.B.C. Oluranti',
+	);
+	foreach ( $defaults as $k => $v ) {
+		if ( empty( $existing[ $k ] ) ) {
+			$existing[ $k ] = $v;
+		}
+	}
+	update_option( 'pa_settings', $existing );
 
 	flush_rewrite_rules();
 	update_option( 'pa_setup_done', 1 );

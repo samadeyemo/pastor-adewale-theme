@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="f-top">
 		<div>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="brand"><span class="brand-mark"><?php echo esc_html( pa_opt( 'brand_initials', 'AO' ) ); ?></span><span class="brand-name"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span></a>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="brand"><img class="brand-logo" src="<?php echo esc_url( PA_URI . '/assets/images/logo.svg' ); ?>" width="44" height="44" alt=""><span class="brand-name"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></span></a>
 			<p><?php echo esc_html( get_bloginfo( 'description' ) ); ?></p>
 			<?php if ( pa_social() ) : ?><div class="social"><?php echo pa_social_html(); // phpcs:ignore WordPress.Security.EscapeOutput ?></div><?php endif; ?>
 		</div>

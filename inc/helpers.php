@@ -34,7 +34,7 @@ function pa_photo_url() {
 }
 
 function pa_pastor_name() {
-	return pa_opt( 'pastor_name', 'Pastor Adewale Oluranti' );
+	return pa_opt( 'pastor_name', 'Pastor Dr Adewale A.B.C. Oluranti' );
 }
 
 /** Extract an 11 character YouTube ID from a URL or a bare ID. */

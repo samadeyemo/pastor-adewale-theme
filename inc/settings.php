@@ -8,7 +8,9 @@ function pa_settings_fields() {
 	return array(
 		'pastor_name'        => array( __( 'Pastor name', 'pastor-adewale' ), 'text', __( 'Shown in the hero, captions and structured data.', 'pastor-adewale' ), 'general' ),
 		'brand_initials'     => array( __( 'Logo initials', 'pastor-adewale' ), 'text', __( 'Two letters shown in the round logo, e.g. AO. A Custom Logo (Appearance → Customize) replaces this.', 'pastor-adewale' ), 'general' ),
-		'photo_id'           => array( __( 'Pastor photo', 'pastor-adewale' ), 'media', __( 'Used on the home page, the pastor page and social sharing. Square or portrait, at least 600 px wide.', 'pastor-adewale' ), 'general' ),
+		'photo_id'           => array( __( 'Pastor photo (profile / hero)', 'pastor-adewale' ), 'media', __( 'Main photo at the top of the home hero and pastor page. Square or portrait, at least 600 px wide. You can replace this anytime.', 'pastor-adewale' ), 'general' ),
+		'bible_image_id'     => array( __( 'Bible School image', 'pastor-adewale' ), 'media', __( 'Optional image for Bible School cards and sections. Leave empty to use the default style.', 'pastor-adewale' ), 'general' ),
+		'hero_bg_id'         => array( __( 'Hero background image', 'pastor-adewale' ), 'media', __( 'Optional wide background behind the home hero text. Recommended 1600×900 or larger.', 'pastor-adewale' ), 'general' ),
 		'quote_text'         => array( __( 'Home page quote', 'pastor-adewale' ), 'textarea', __( 'A short quote from the pastor. The quote section stays hidden until you add one.', 'pastor-adewale' ), 'general' ),
 		'quote_cite'         => array( __( 'Quote credit', 'pastor-adewale' ), 'text', '', 'general' ),
 		'registration'       => array( __( 'Registration details', 'pastor-adewale' ), 'text', __( 'For the footer, e.g. the CAC registration number.', 'pastor-adewale' ), 'general' ),
@@ -120,9 +122,12 @@ function pa_settings_page() {
 				echo '<textarea class="large-text" rows="4" id="pa_' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '">' . esc_textarea( $val ) . '</textarea>';
 			} elseif ( 'media' === $f[1] ) {
 				$url = $val ? wp_get_attachment_image_url( (int) $val, 'thumbnail' ) : '';
-				echo '<div><img id="pa_photo_preview" src="' . esc_url( $url ) . '" style="max-width:120px;height:auto;display:' . ( $url ? 'block' : 'none' ) . ';margin-bottom:8px;border-radius:8px"></div>';
-				echo '<input type="hidden" id="pa_' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $val ) . '">';
-				echo '<button type="button" class="button" id="pa_photo_pick">' . esc_html__( 'Choose photo', 'pastor-adewale' ) . '</button> <button type="button" class="button-link" id="pa_photo_clear">' . esc_html__( 'Remove', 'pastor-adewale' ) . '</button>';
+				echo '<div class="pa-media-field" data-key="' . esc_attr( $key ) . '">';
+				echo '<img class="pa-media-preview" src="' . esc_url( $url ) . '" alt="" style="max-width:120px;height:auto;display:' . ( $url ? 'block' : 'none' ) . ';margin-bottom:8px;border-radius:8px">';
+				echo '<input type="hidden" class="pa-media-input" id="pa_' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" value="' . esc_attr( $val ) . '">';
+				echo '<button type="button" class="button pa-media-pick">' . esc_html__( 'Choose image', 'pastor-adewale' ) . '</button> ';
+				echo '<button type="button" class="button-link pa-media-clear">' . esc_html__( 'Remove', 'pastor-adewale' ) . '</button>';
+				echo '</div>';
 			} elseif ( 'password' === $f[1] ) {
 				$has = ! empty( $all[ $key ] ) ? __( 'A key is saved. Type a new one to replace it.', 'pastor-adewale' ) : '';
 				echo '<input class="regular-text" type="password" autocomplete="new-password" id="pa_' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" value="" placeholder="' . esc_attr( $has ) . '">';
@@ -163,16 +168,29 @@ function pa_settings_page() {
 	?>
 	<script>
 	(function(){
-		var pick=document.getElementById('pa_photo_pick'),clr=document.getElementById('pa_photo_clear'),inp=document.getElementById('pa_photo_id'),img=document.getElementById('pa_photo_preview'),frame;
-		if(!pick||!window.wp||!wp.media){return}
-		pick.addEventListener('click',function(){
-			if(!frame){frame=wp.media({title:'Choose pastor photo',multiple:false,library:{type:'image'}});
-			frame.on('select',function(){var a=frame.state().get('selection').first().toJSON();inp.value=a.id;img.src=(a.sizes&&a.sizes.thumbnail)?a.sizes.thumbnail.url:a.url;img.style.display='block'})}
-			frame.open();
+		if(!window.wp||!wp.media){return}
+		document.querySelectorAll('.pa-media-field').forEach(function(box){
+			var pick=box.querySelector('.pa-media-pick'),clr=box.querySelector('.pa-media-clear'),inp=box.querySelector('.pa-media-input'),img=box.querySelector('.pa-media-preview'),frame;
+			if(!pick||!inp){return}
+			pick.addEventListener('click',function(){
+				if(!frame){
+					frame=wp.media({title:'Choose image',multiple:false,library:{type:'image'}});
+					frame.on('select',function(){
+						var a=frame.state().get('selection').first().toJSON();
+						inp.value=a.id;
+						if(img){img.src=(a.sizes&&a.sizes.thumbnail)?a.sizes.thumbnail.url:a.url;img.style.display='block'}
+					});
+				}
+				frame.open();
+			});
+			if(clr){clr.addEventListener('click',function(){inp.value='';if(img){img.style.display='none';img.removeAttribute('src')}})}
 		});
-		clr.addEventListener('click',function(){inp.value='';img.style.display='none'});
 	})();
 	</script>
+	<p class="description" style="margin-top:24px"><strong><?php esc_html_e( 'Home hero carousel images:', 'pastor-adewale' ); ?></strong>
+	<?php esc_html_e( 'To add or change the rotating images at the top of the home page, go to', 'pastor-adewale' ); ?>
+	<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=hero_slide' ) ); ?>"><?php esc_html_e( 'Home slides', 'pastor-adewale' ); ?></a>.
+	<?php esc_html_e( 'Add a new slide, set a Featured Image, and order them with the Order field.', 'pastor-adewale' ); ?></p>
 	<?php
 	echo '</div>';
 }
